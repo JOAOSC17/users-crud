@@ -24,6 +24,13 @@ export default async function ControllersById (req, res) {
             res.status(400).json("Erro")
           }
             break;
+        case 'DELETE':
+            try {
+                const deletedUser = await User.deleteOne({_id: id})
+                res.status(201).json(deletedUser)
+            } catch (error) {
+                res.status(400).json("Erro")
+            }
         default:
           res.status(400).json("Erro")
           break;

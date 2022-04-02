@@ -66,14 +66,13 @@ export default function Navbar() {
               sign up
             </Button>
             <Button
-              fontSize={'sm'}
-              fontWeight={600}
-              color={'white'}
-              colorScheme='blue'
-              href={'#'}
-              >
-              Add Usuário
-            </Button>
+            as={'a'}
+            fontSize={'sm'}
+            fontWeight={400}
+            variant={'link'}
+            href={'/new'}>
+            Add Usuário
+          </Button>
           </Stack>
         </Flex>
       </Box>

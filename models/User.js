@@ -14,4 +14,4 @@ const UserSchema = new mongoose.Schema({
         required:[true, 'Please add a age']
     }
 })
-module.exports = mongoose.model.User || mongoose.model('User', UserSchema)
+module.exports = mongoose.models.User || mongoose.model('User', UserSchema)

@@ -27,7 +27,7 @@ export default function Table({users}) {
         </Thead>
         <Tbody>
           {users.map((user) => (
-            <Tr key={user.id}>
+            <Tr key={user._id} >
             <Td>{user.name}</Td>
             <Td>{user.email}</Td>
             <Td>{user.age}</Td>
@@ -49,9 +49,11 @@ export default function Table({users}) {
           w={'150px'}>
           <Stack>
             <Button
-             width="100%"
+            width="100%"
             colorScheme='teal'
             variant='ghost'
+            as={'a'}
+            href={`/${user._id}`}
                 fontWeight={500}>
                 Visualisar
             </Button>
@@ -59,6 +61,8 @@ export default function Table({users}) {
              width="100%"
             colorScheme='teal'
             variant='ghost'
+            as={'a'}
+            href={`/edit/${user._id}`}
                 fontWeight={500}>
                 Editar
             </Button>

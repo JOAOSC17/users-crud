@@ -66,9 +66,9 @@ export default function Navbar() {
               sign up
             </Button>
             <Button
-            as={'a'}
             fontSize={'sm'}
             fontWeight={400}
+            as={'a'}
             variant={'link'}
             href={'/new'}>
             Add Usuário

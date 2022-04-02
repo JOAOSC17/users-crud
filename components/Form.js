@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import api from '../services/api'
 import {
     Flex,
@@ -16,9 +16,18 @@ import {
   } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
-export default function Form() {
+export default function Form({user}) {
   const [form, setForm] = useState({name:"", email:"", age:0})
   const router = useRouter()
+  useEffect(()=>{
+    if(user){
+      setForm({
+        name:user.name,
+        email:user.email,
+        age:user.age
+      })
+    }
+  }, [user])
   function onChange (e) {
     setForm({
       ...form,
@@ -28,7 +37,11 @@ export default function Form() {
   async function onSubmit (e) {
     e.preventDefault()
     try {
-      await api.post('/', form)
+      if(user){
+      await api.put(`/${user._id}`, form)
+    } else {
+      await api.post('/', form) 
+    }
       router.push("/")
     } catch (error) {
       console.log("Houve um erro")
@@ -48,15 +61,15 @@ export default function Form() {
         <form onSubmit={onSubmit}>
           <FormControl isRequired>
             <FormLabel htmlFor="name">Nome</FormLabel>
-            <Input id="name" name="name" type="text" onChange={onChange} />
+            <Input id="name" name="name" type="text" value={form.name} onChange={(e) => onChange (e)} />
           </FormControl>
           <FormControl isRequired>
             <FormLabel htmlFor="email">Email</FormLabel>
-            <Input id="email" name="email" type="email" onChange={onChange} />
+            <Input id="email" name="email" type="email" value={form.email} onChange={(e) => onChange (e)} />
           </FormControl>
           <FormControl isRequired>
             <FormLabel htmlFor="age">Idade</FormLabel>
-            <Input id="age" name="age" type="number" onChange={onChange} />
+            <Input id="age" name="age" type="number" value={form.age} onChange={(e) => onChange (e)} />
           </FormControl>
           <Stack spacing={10}>
             <Button
@@ -66,7 +79,7 @@ export default function Form() {
               _hover={{
                 bg: 'blue.500',
               }}>
-              Adicionar Usuário
+                {user ? 'Editar' : 'Adicionar'} Usuário
             </Button>
           </Stack>
           </form>

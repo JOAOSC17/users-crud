@@ -13,6 +13,17 @@ export default async function ControllersById (req, res) {
             res.status(400).json("Erro")
           }
           break;
+        case 'PUT':
+          try {
+            const newUser = await User.findByIdAndUpdate(id, req.body, {
+                new:true,
+                runValidors:true
+            })
+            res.status(201).json(newUser)
+          } catch (error) {
+            res.status(400).json("Erro")
+          }
+            break;
         default:
           res.status(400).json("Erro")
           break;

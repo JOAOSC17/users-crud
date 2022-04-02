@@ -1,8 +1,7 @@
 import User from "../../models/User";
 import dbConnect from "../../utils/dbConnect"
 dbConnect()
-// eslint-disable-next-line import/no-anonymous-default-export
-export default async (req, res) => {
+export default async function Controllers(req, res) {
   const { method } = req;
   switch (method) {
     case 'GET':

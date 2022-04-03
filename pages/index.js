@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import Navbar from '../components/Navbar'
 import Table from '../components/Table'
 import styles from '../styles/Home.module.css'
@@ -20,9 +19,7 @@ export default function Index({users}) {
     </>
   )
 }
-export async function getServerSideProps() {
-  const { data } = await api.get('/')
-  return {
-    props: {users: data}, 
-  }
+export async function getStaticProps() {
+  const { data: users } = await api.get('/')
+  return {props: {users}}
 }

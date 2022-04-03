@@ -4,6 +4,7 @@ import {
   cookieStorageManager,
   localStorageManager,
 } from '@chakra-ui/react'
+import api from '../services/api'
 
 function MyApp({ Component, pageProps, cookies  }) {
   return (

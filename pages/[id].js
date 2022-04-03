@@ -63,7 +63,6 @@ export default function ShowUser({user}) {
 }
 export async function getServerSideProps({query: { id }}) {
   const { data } = await api.get(`/${id}`)
-  console.log(data)
   return {
     props: {user: data}, 
   }

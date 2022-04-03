@@ -61,7 +61,10 @@ export default function ShowUser({user}) {
     </>
   )
 }
-ShowUser.getInitialProps = async ({query: { id }}) => {
-    const { data } = await api.get(`/${id}`)
-    return {user: data}
+export async function getServerSideProps({query: { id }}) {
+  const { data } = await api.get(`/${id}`)
+  console.log(data)
+  return {
+    props: {user: data}, 
+  }
 }

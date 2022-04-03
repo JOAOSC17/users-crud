@@ -54,7 +54,7 @@ export default function Form({user}) {
     <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
       <Box
         rounded={'lg'}
-        bg={useColorModeValue('white', 'green.900')}
+        bg={useColorModeValue('white', 'gray.900')}
         boxShadow={'lg'}
         p={8}>
         <Stack spacing={4}>
@@ -71,7 +71,7 @@ export default function Form({user}) {
             <FormLabel htmlFor="age">Idade</FormLabel>
             <Input id="age" name="age" type="number" value={form.age} onChange={(e) => onChange (e)} />
           </FormControl>
-          <Stack spacing={10}>
+          <Stack spacing={10} py={4}>
             <Button
               type='submit'
               bg={'blue.400'}

@@ -8,13 +8,16 @@ import {
     useColorModeValue,
     useBreakpointValue,
     useDisclosure,
+    useColorMode,
   } from '@chakra-ui/react';
   import {
     HamburgerIcon,
     CloseIcon,
   } from '@chakra-ui/icons';
-  
+import { FiSun } from 'react-icons/fi'
+import { RiMoonLine } from 'react-icons/ri'
 export default function Navbar() {
+    const { colorMode, toggleColorMode } = useColorMode()
     const { isOpen, onToggle } = useDisclosure();
   
     return (
@@ -34,9 +37,9 @@ export default function Navbar() {
             ml={{ base: -2 }}
             display={{ base: 'flex', md: 'none' }}>
             <IconButton
-              onClick={onToggle}
+              onClick={toggleColorMode}
               icon={
-                isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
+                colorMode === 'light' ? <RiMoonLine/> : (<FiSun/>)
               }
               variant={'ghost'}
               aria-label={'Toggle Navigation'}
@@ -57,13 +60,14 @@ export default function Navbar() {
             direction={'row'}
             spacing={6}>
             <Button
+              onClick={toggleColorMode}
               display={{ base: 'none', md: 'inline-flex' }}
               colorScheme='gray'
               variant='ghost'
               fontSize={'sm'}
               fontWeight={400}
               >
-              sign up
+              {colorMode === 'light' ? <RiMoonLine/> : (<FiSun w={5} h={5} />)}
             </Button>
             <Button
             fontSize={'sm'}

@@ -1,6 +1,5 @@
 import React from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
 import Navbar from '../../components/Navbar'
 import styles from '../../styles/Home.module.css'
 import api from '../../services/api'
@@ -22,7 +21,9 @@ export default function EditUser({user}) {
     </>
   )
 }
-EditUser.getInitialProps = async ({query: { id }}) => {
-    const { data } = await api.get(`/${id}`)
-    return {user: data}
+export async function getServerSideProps({query: { id }}) {
+  const { data } = await api.get(`/${id}`)
+  return {
+    props: {user: data}, 
+  }
 }

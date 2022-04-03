@@ -20,8 +20,9 @@ export default function Index({users}) {
     </>
   )
 }
-Index.getInitialProps = async () => {
+export async function getServerSideProps() {
   const { data } = await api.get('/')
-  console.log(data)
-  return {users: data}
+  return {
+    props: {users: data}, 
+  }
 }

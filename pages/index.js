@@ -19,7 +19,9 @@ export default function Index({users}) {
     </>
   )
 }
-export async function getStaticProps() {
-  const { data: users } = await api.get('/')
-  return {props: {users}}
+export async function getServerSideProps() {
+  const { data } = await api.get('/')
+  return {
+    props: {users: data}, 
+  }
 }
